@@ -1,14 +1,5 @@
-const {Telegraf, Markup, Extra} = require('telegraf');
-const bot = new Telegraf('7132944839:AAEvSA9xG3vnYvqvES1dujypfXU3sfWcpqM');
-
-bot.command('start', (ctx) => {
-   ctx.reply(
-      "Hello! <b>Go next?</b>", 
-      Extra.markup(
-         Markup.inlineKeyboard([[Markup.callbackButton("Далее", 'next')]])
-      ).HTML()
-   );
-});
+const { Markup, Extra} = require('telegraf');
+bot.use(require('./src/main'));
 
 bot.action('next', (ctx) => {
    ctx.editMessageText(
@@ -37,6 +28,4 @@ bot.action('delete', (ctx) => {
    ctx.deleteMessage();
 });
 
-bot.launch().then(() => {
-   console.log('бот запущен!');
-});
+module.exports = scene;
